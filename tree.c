@@ -203,17 +203,3 @@ static int build_tree_recursive(IndexEntry *entries, int count, const char *pref
 // objects to the object store.
 //
 // Returns 0 on success, -1 on error.
-int tree_from_index(ObjectID *id_out) {
-    Index index;
-    if (index_load(&index) != 0) {
-        return -1;
-    }
-    
-    if (index.count == 0) {
-        fprintf(stderr, "error: no files staged\n");
-        return -1;
-    }
-    
-    // Build tree starting from root (empty prefix)
-    return build_tree_recursive(index.entries, index.count, "", id_out);
-}
