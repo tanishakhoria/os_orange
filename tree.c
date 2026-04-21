@@ -176,16 +176,7 @@ static int build_tree_recursive(IndexEntry *entries, int count, const char *pref
                     return -1;
                 }
                 
-                // Add the subtree to this tree
-                TreeEntry *entry = &tree.entries[tree.count++];
-                entry->mode = MODE_DIR;
-                entry->hash = subtree_id;
-                strncpy(entry->name, dir_name, sizeof(entry->name) - 1);
-                entry->name[sizeof(entry->name) - 1] = '\0';
-            }
-        }
-    }
-    
+        
  
 
 // Build a tree hierarchy from the current index and write all tree
