@@ -215,26 +215,5 @@ int commit_create(const char *message, ObjectID *commit_id_out) {
     }
     
     // Step 3: Set author and timestamp
-    const char *author = pes_author();
-    strncpy(commit.author, author, sizeof(commit.author) - 1);
-    commit.author[sizeof(commit.author) - 1] = '\0';
-    commit.timestamp = (uint64_t)time(NULL);
-    
-    // Step 4: Set message
-    strncpy(commit.message, message, sizeof(commit.message) - 1);
-    commit.message[sizeof(commit.message) - 1] = '\0';
-    
-    // Step 5: Serialize commit
-    void *commit_data;
-    size_t commit_len;
-    if (commit_serialize(&commit, &commit_data, &commit_len) != 0) {
-        return -1;
-    }
-    
-    // Step 6: Write commit object
-    if (object_write(OBJ_COMMIT, commit_data, commit_len, commit_id_out) != 0) {
-        free(commit_data);
-        return -1;
-    }
-    free(commit_data);
+
     
