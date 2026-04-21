@@ -514,17 +514,7 @@ int object_read(const ObjectID *id, ObjectType *type_out, void **data_out, size_
     }
     
     // Parse type
-    if (strcmp(type_str, "blob") == 0) {
-        *type_out = OBJ_BLOB;
-    } else if (strcmp(type_str, "tree") == 0) {
-        *type_out = OBJ_TREE;
-    } else if (strcmp(type_str, "commit") == 0) {
-        *type_out = OBJ_COMMIT;
-    } else {
-        free(file_data);
-        return -1;
-    }
-    
+
     // Step 4: Verify integrity by recomputing hash
     ObjectID computed_id;
     compute_hash(file_data, file_size, &computed_id);
